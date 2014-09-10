@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('MainCtrl', function ($scope, $interval, stackedAreaChartSampleData, pieChartSampleData, RandomTimeSeriesDataModel, RandomTopNDataModel) {
+  .controller('MainCtrl', function ($scope, $interval, stackedAreaChartSampleData, pieChartSampleData, RandomTimeSeriesDataModel, RandomTopNDataModel, RandomMinutesDataModel, RandomNVD3TimeSeriesDataModel) {
     var widgetDefinitions = [
       {
         name: 'wt-time',
@@ -42,11 +42,33 @@ angular.module('app')
         }
       },
       {
-        name: 'wt-top-n',
+        name: 'topNfubar',
+        directive: 'wt-top-n',
         dataAttrName: 'data',
-        dataModelType: RandomTopNDataModel,
+        dataModelType: RandomTopNDataModel
+      },
+      {
+        name: 'NVD3 Bar Chart',
+        directive: 'wt-nvd3-bar-chart',
+        dataAttrName: 'data',
+        dataModelType: RandomMinutesDataModel,
+        dataModelArgs: {
+          limit: 1000
+        },
         style: {
-          width: '30%'
+          width: '50%'
+        }
+      },
+      {
+        name: 'NVD3 Line Chart',
+        directive: 'wt-nvd3-line-chart',
+        dataAttrName: 'data',
+        dataModelType: RandomNVD3TimeSeriesDataModel,
+        dataModelArgs: {
+          rate: 40
+        },
+        style: {
+          width: '50%'
         }
       },
       {
